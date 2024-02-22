@@ -56,7 +56,7 @@ export default function Signup() {
           <div className="flex flex-col gap-1">
             <input 
               type="email" 
-              className="bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 placeholder:text-sm placeholder:font-mono" 
+							className={`bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 ${errors.email ? "border-red-500" : ""} placeholder:text-sm placeholder:font-mono`}
               id="email"
               {...register("email")}
               value={user.email}
@@ -67,7 +67,7 @@ export default function Signup() {
           <div className="flex flex-col gap-1">
             <input 
               type="text" 
-              className="bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 placeholder:text-sm placeholder:font-mono" 
+							className={`bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 ${errors.username ? "border-red-500" : ""} placeholder:text-sm placeholder:font-mono`}
               id="username"
               value={user.username}
               {...register("username")}
@@ -78,7 +78,7 @@ export default function Signup() {
           <div className="flex flex-col gap-1">
             <input 
               type="password" 
-              className="bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 placeholder:text-sm placeholder:font-mono" 
+							className={`bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 ${errors.password ? "border-red-500" : ""} placeholder:text-sm placeholder:font-mono`}
               id="password"
               value={user.password}
               {...register("password")}
@@ -89,7 +89,7 @@ export default function Signup() {
           <div className="flex flex-col gap-1">
             <input 
               type="password" 
-              className="bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 placeholder:text-sm placeholder:font-mono" 
+							className={`bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 ${errors.confirmPassword ? "border-red-500" : ""} placeholder:text-sm placeholder:font-mono`}
               id="confirmPassword"
               value={user.confirmPassword}
               {...register("confirmPassword")}
