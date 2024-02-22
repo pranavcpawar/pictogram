@@ -37,8 +37,8 @@ export default function Signup() {
       console.log("signup success!", res.data);
       router.push("/login");
       
-    } catch (error) {
-      console.log("signup failed!", error);
+    } catch (err) {
+      console.log("signup failed!", (err as Error).message);
     } finally {
       setLoader(false);
     }
@@ -46,7 +46,7 @@ export default function Signup() {
 
   return (
     <main className="flex min-h-screen flex-col gap-8 items-center p-20 text-[#dadada]">
-      <title>Sign up | Frienso</title>
+      <title>Sign up • Frienso</title>
       <div className="flex flex-col sm:max-w-[360px] w-[80vw] bg-[#010101] gap-8 items-center sm:justify-between border-2 border-[#404040] px-6 py-4 shadow-[4px_4px_#252525]">
         <div className="flex flex-col items-center text-wrap font-mono text-center">
           <h1 className="text-2xl mt-[36px] mb-[12px] font-mono font-bold">frienso</h1>
