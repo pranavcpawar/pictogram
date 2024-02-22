@@ -6,6 +6,7 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { UserValidation } from "@/database/validations/user";
+import Image from "next/image";
 
 interface IUser {
   username: string;
@@ -48,7 +49,7 @@ export default function Login() {
 					<div className="flex flex-col gap-1">
 						<input 
 							type="text" 
-							className="bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 placeholder:text-sm placeholder:font-mono" 
+							className={`bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 ${errors.username ? "border-red-500" : ""} placeholder:text-sm placeholder:font-mono`}
 							id="username"
 							value={user.username}
 							{...register("username")}
@@ -59,7 +60,7 @@ export default function Login() {
 					<div className="flex flex-col gap-1">
 						<input 
 							type="password" 
-							className="bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 placeholder:text-sm placeholder:font-mono" 
+							className={`bg-[#181818] w-full rounded-md p-1.5 border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700 ${errors.password ? "border-red-500" : ""} placeholder:text-sm placeholder:font-mono`} 
 							id="password"
 							value={user.password}
 							{...register("password")}
@@ -68,7 +69,13 @@ export default function Login() {
               {errors.password && <span className="text-red-500 text-xs font-mono">{errors.password.message}</span>}
 
 					</div>
-					<button type="submit" className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525]">login</button>
+          <button type="submit"  className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525]">
+            {loader ? 
+              <div className="flex items-center justify-center">
+                <Image src={"/loader.svg"} alt="loader" width={24} height={24} className="bg-inherit" />
+              </div> : 
+            "Login"}
+          </button>				
 				</form>
 			</div>
 			<div className="flex flex-col gap-4 w-[80vw] font-mono items-center justify-center border-2 border-[#404040] sm:max-w-[350px] p-4 shadow-[4px_4px_#252525]">
