@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
     // set cookies
     const res = NextResponse.json({ message: "Login successful"}, { status: 200 });
-    res.cookies.set("token", JSON.stringify(token), {httpOnly: true });
+    res.cookies.set("token", JSON.stringify(token), {sameSite: "strict", httpOnly: true, secure: true});
 
     return res;
 
