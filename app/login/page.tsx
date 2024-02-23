@@ -5,16 +5,16 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { UserValidation } from "@/database/validations/user";
 import Image from "next/image";
+import { UserLoginValidation } from "@/database/validations/user.login";
 
-interface IUser {
+export interface IUser {
   username: string;
   password: string;
 };
 
 export default function Login() {
-	const router = useRouter()
+	const router = useRouter();
 	const [user, setUser] = useState<IUser>({
 		username: "",
 		password: "",
@@ -22,13 +22,13 @@ export default function Login() {
 	const [loader, setLoader] = useState<boolean>(false);
 	
   const {register, handleSubmit, formState: {errors}, setError} = useForm<IUser>({
-    resolver: zodResolver(UserValidation),
+    resolver: zodResolver(UserLoginValidation),
   });
 
 	const onLogin = async (user: IUser) => {
 		try {
 			setLoader(true);
-			const res = await axios.post("/api/users/login", user);
+			const res = await axios.post("/api/users/login", {username: user.username, password: user.password});
 
 			console.log("login success!", res.data);
 			router.push("/");
@@ -67,9 +67,8 @@ export default function Login() {
 							placeholder="password"
 							onChange={(e) => setUser({ ...user, password: e.target.value })} />
               {errors.password && <span className="text-red-500 text-xs font-mono">{errors.password.message}</span>}
-
 					</div>
-          <button type="submit"  className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525]">
+          <button type="submit" className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525]">
             {loader ? 
               <div className="flex items-center justify-center">
                 <Image src={"/loader.svg"} alt="loader" width={24} height={24} className="bg-inherit" />
