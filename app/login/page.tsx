@@ -36,7 +36,7 @@ export default function Login() {
 		} catch (err) {
 			console.log("login failed!", (err as Error).message);
 		} finally {
-			setLoader(false);
+			setTimeout(() => setLoader(false), 5000); 
 		}
 	}
 
@@ -68,7 +68,7 @@ export default function Login() {
 							onChange={(e) => setUser({ ...user, password: e.target.value })} />
               {errors.password && <span className="text-red-500 text-xs font-mono">{errors.password.message}</span>}
 					</div>
-          <button type="submit" className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525]">
+          <button type="submit" className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525] focus:outline-none focus:outline focus:outline-2 focus:outline-gray-700">
             {loader ? 
               <div className="flex items-center justify-center">
                 <Image src={"/loader.svg"} alt="loader" width={24} height={24} className="bg-inherit" />

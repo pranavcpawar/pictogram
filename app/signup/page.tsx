@@ -97,7 +97,7 @@ export default function Signup() {
               onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })} />
               {errors.confirmPassword && <span className="text-red-500 text-xs font-mono">{errors.confirmPassword.message}</span>}
           </div>
-          <button type="submit"  className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525]">
+          <button type="submit"  className="w-full active:scale-95 rounded-md p-2 font-mono border-2 border-[#252525] focus:outline-none outline-2 focus:outline-gray-700">
             {loader ? 
               <div className="flex items-center justify-center">
                 <Image src={"/loader.svg"} alt="loader" width={24} height={24} className="bg-inherit" />
