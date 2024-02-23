@@ -10,12 +10,12 @@ export async function POST(request: NextRequest) {
 
   try {
     const req = await request.json();
-    const { email, password } = req;
+    const { username, password } = req;
 
     console.log(req);
 
     // check if user exists
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ username })
 
     if(!user){
       return NextResponse.json({ error: "User not found" }, { status: 400 });
@@ -29,11 +29,11 @@ export async function POST(request: NextRequest) {
     }
 
     // create jwt
-    const token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_SECRET! as string, { expiresIn: "1d" });
+    const token = jwt.sign({ username: user.username, id: user._id }, process.env.JWT_SECRET!, { expiresIn: "1d" });
 
     // set cookies
     const res = NextResponse.json({ message: "Login successful"}, { status: 200 });
-    res.cookies.set({ name: "token", value: JSON.stringify(token), httpOnly: true });
+    res.cookies.set("token", JSON.stringify(token), {httpOnly: true });
 
     return res;
 
