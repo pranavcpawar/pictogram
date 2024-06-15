@@ -1,27 +1,22 @@
-import { Montserrat } from "next/font/google";
+import { RegisterForm } from "@/components/form";
 import Image from "next/image";
+import Link from "next/link";
 
-const montserrat = Montserrat({ 
-  subsets: ["latin"], 
-  weight: [ "300", "100", "200", "600", "800", "400", "500", "700"],
-  adjustFontFallback: true,
-  style: ["normal", "italic"],
-  variable: "--font-montserrat",
-});
 
 export default function RegisterPage(){
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-20">
+    <main className="flex min-w-[45vw] flex-col items-start p-4">
       <title>Register • Frienso</title>
-      <div className="bg-[#050505] border rounded-[12px] border-[#303030] flex flex-1 flex-col place-items-center sm:w-[360px] w-[80vw] h-[768px] p-4">
-        <div className="flex flex-col w-full h-full items-center justify-center gap-2">
-          <div className="mt-[36px]">
-            <Image src="/frienso.svg" alt="frienso logo" width={140} height={100} />
-          </div>
-          <div className={`${montserrat.className} text-[#eaeaea] flex flex-col text-center text-wrap p-2 w-full h-full gap-8 mt-[24px] mb-[12px]`}>
-            <span className="text-[#eaeaea] text-sm">Register to Frienso to chat with your friends.</span>
-          </div>
+      <div className=" max-w-[420px] flex flex-col items-center rounded-md w-full h-full gap-2 p-8">
+        <div className="mt-[36px]">
+          <Image src="/frienso.svg" alt="frienso logo" width={240} height={100} priority />
         </div>
+        <div className="text-[#eaeaea] flex flex-col w-full h-full gap-6 mb-[12px] mt-[32px]">
+          <RegisterForm />
+        </div>
+        <div className="flex flex-col gap-4 border-2 border-[#202020] rounded-[12px] w-full items-center justify-center p-4">
+          <h3 className="text-sm font-medium">Already have an account?{" "} <Link  className="text-[#CA2C92] underline-offset-2" href="/login">Log in</Link></h3>
+      </div>
       </div>
     </main>
   );
