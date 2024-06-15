@@ -15,8 +15,8 @@ export default function RegisterPage(){
           <RegisterForm />
         </div>
         <div className="flex flex-col gap-4 border-2 border-[#202020] rounded-[12px] w-full items-center justify-center p-4">
-          <h3 className="text-sm font-medium">Already have an account?{" "} <Link  className="text-[#CA2C92] underline-offset-2" href="/login">Log in</Link></h3>
-      </div>
+          <h3 className="text-sm font-medium text-[#eaeaea]">Already have an account?{" "} <Link  className="text-[#CA2C92] underline-offset-2" href="/login">Log in</Link></h3>
+        </div>
       </div>
     </main>
   );
