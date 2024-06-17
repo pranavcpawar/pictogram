@@ -1,6 +1,6 @@
 "use server";
-import { loginSchema, registerSchema } from "@/database/validations";
-import { authenticateRegisterAction, authenticateLoginAction, ActionError } from "./safe-actions";
+import { loginSchema, logoutSchema, registerSchema } from "@/database/validations";
+import { authenticateRegisterAction, authenticateLoginAction, ActionError, unauthenticatedLogoutAction } from "./safe-actions";
 import bcryptjs from "bcryptjs";
 import { addUser } from "@/database/operations";
 import { redirect } from "next/navigation";
@@ -25,4 +25,9 @@ export const loginUserAction = authenticateLoginAction(loginSchema, async({ emai
   const auth = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_SECRET!, { expiresIn: "1h" });
   cookies().set("auth", JSON.stringify(auth), { secure: true, sameSite: "strict", httpOnly: true, maxAge: 60 * 60 * 1 });
   
+});
+
+export const logoutUserAction = unauthenticatedLogoutAction(logoutSchema, async({ auth }) => {
+  cookies().delete(auth);
+
 });

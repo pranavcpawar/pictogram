@@ -29,4 +29,13 @@ export const authenticateLoginAction = createSafeActionClient({
   }
 });
 
+export const unauthenticatedLogoutAction = createSafeActionClient({
+  handleReturnedServerError(e){
+    if(e instanceof ActionError){
+      return e.message;
+    }
+    return DEFAULT_SERVER_ERROR;
+  }
+});
+
 export class ActionError extends Error {}
