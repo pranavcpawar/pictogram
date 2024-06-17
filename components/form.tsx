@@ -10,6 +10,7 @@ import { useAction } from "next-safe-action/hooks";
 import { loginUserAction, registerNewUserAction } from "@/app/actions/form-actions";
 import { toast } from "sonner";
 import LoaderButton from "./loader-button";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   type: "text" | "password";
@@ -38,12 +39,14 @@ function FormField({ type, name, error, Icon, register }: FormValues) {
 };
 
 export function RegisterForm(){
+  const router = useRouter();
   const { execute, status } = useAction(registerNewUserAction, {
     onSuccess() {
-      toast.success("Register Successful");
+      router.refresh();
+      toast.success("Successfully registered!");
     },
     onError(error) {
-      toast.error(error.serverError);
+      toast.error(error.serverError || error.fetchError);
     }
   });
   const registerForm = useForm<z.infer<typeof registerSchema>>({
@@ -91,12 +94,14 @@ export function RegisterForm(){
 };
 
 export function LoginForm(){
+  const router = useRouter();
   const { execute, status } = useAction(loginUserAction, {
     onSuccess() {
-      toast.success("Login Successful");
+      router.refresh();
+      toast.success("Successfully logged in!");
     },
     onError(error) {
-      toast.error(error.fetchError);
+      toast.error(error.serverError || error.fetchError);
     }
   }); 
   const loginForm = useForm<z.infer<typeof loginSchema>>({

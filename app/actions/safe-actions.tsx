@@ -16,7 +16,10 @@ export const authenticateRegisterAction = createSafeActionClient({
 
 export const authenticateLoginAction = createSafeActionClient({
   async middleware({ email, password }){
-    console.log("authenticatedAction: ", email, password );
+    const user = await getUser(email);
+    if(!user) throw new ActionError("Create a new account. User does not exist!");
+
+    return { user };
   },
   handleReturnedServerError(e){
     if(e instanceof ActionError){
