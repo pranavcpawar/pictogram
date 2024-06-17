@@ -3,14 +3,12 @@ import SubmitButton from "@/components/submit-button";
 import { useAction } from "next-safe-action/hooks";
 import { logoutUserAction } from "../actions/form-actions";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 export default function Home() {
   const router = useRouter();
   const { execute, status } = useAction(logoutUserAction, {
     onSuccess() {
-      router.refresh();
-      toast.success("Successfully logged out!");
+      router.push("/login");
     }
   });
   return (

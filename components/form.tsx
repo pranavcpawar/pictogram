@@ -43,7 +43,6 @@ export function RegisterForm(){
   const { execute, status } = useAction(registerNewUserAction, {
     onSuccess() {
       router.refresh();
-      toast.success("Successfully registered!");
     },
     onError(error) {
       toast.error(error.serverError || error.fetchError);
@@ -97,8 +96,7 @@ export function LoginForm(){
   const router = useRouter();
   const { execute, status } = useAction(loginUserAction, {
     onSuccess() {
-      router.refresh();
-      toast.success("Successfully logged in!");
+      router.push("/");
     },
     onError(error) {
       toast.error(error.serverError || error.fetchError);
