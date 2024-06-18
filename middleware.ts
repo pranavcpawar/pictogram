@@ -5,7 +5,7 @@ export function middleware(request: NextRequest){
 
   const isPublic = ["/login", "/register"].includes(request.nextUrl.pathname);
 
-  const auth = cookies().get("auth")?.value || "";
+  const auth = cookies().get("session")?.value || "";
 
   if(!isPublic && !auth){
     return NextResponse.redirect(new URL("/login", request.url));

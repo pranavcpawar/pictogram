@@ -15,7 +15,7 @@ export default function Home() {
   });
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <SubmitButton onClick={() => startTransition(() => execute({ auth: "auth" }))} isLoading={status === "executing" || isPending}>Logout</SubmitButton>
+      <SubmitButton onClick={() => startTransition(() => execute({ auth: "session" }))} isLoading={status === "executing" || isPending}>Logout</SubmitButton>
     </main>
   );
 }
