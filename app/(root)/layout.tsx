@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={`dark z-0 ${poppins.className}`}>
         {children}
         <Toaster richColors theme="dark" className="z-40" />
         </body>

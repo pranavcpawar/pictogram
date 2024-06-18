@@ -16,14 +16,19 @@ export const registerNewUserAction = authenticateRegisterAction(registerSchema, 
 });
 
 export const loginUserAction = authenticateLoginAction(loginSchema, async({ email, password }, { user }) => {
-  const isLegit = await bcryptjs.compare(password, user.password);
 
-  if (!isLegit) {
-    throw new ActionError("Authentication Failed. Please try again!");
-  };
-
-  const auth = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_SECRET!, { expiresIn: "1h" });
-  cookies().set("auth", JSON.stringify(auth), { secure: true, sameSite: "strict", httpOnly: true, maxAge: 60 * 60 * 1 });
+  try {
+    const isLegit = await bcryptjs.compare(password, user.password);
+  
+    if (!isLegit) {
+      throw new ActionError("Authentication Failed. Please try again!");
+    };
+  
+    const auth = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_SECRET!, { expiresIn: "1h" });
+    cookies().set("auth", JSON.stringify(auth), { secure: true, sameSite: "strict", httpOnly: true, maxAge: 60 * 60 * 1 });
+  } catch (error) {
+    throw new ActionError("Something went wrong. Please try again!");
+  }
   
 });
 

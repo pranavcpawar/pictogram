@@ -11,6 +11,7 @@ import { loginUserAction, registerNewUserAction } from "@/app/actions/form-actio
 import { toast } from "sonner";
 import LoaderButton from "./loader-button";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 type FormValues = {
   type: "text" | "password";
@@ -40,6 +41,7 @@ function FormField({ type, name, error, Icon, register }: FormValues) {
 
 export function RegisterForm(){
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const { execute, status } = useAction(registerNewUserAction, {
     onSuccess() {
       router.refresh();
@@ -58,8 +60,10 @@ export function RegisterForm(){
   });
 
   const onSubmit = async (values: z.infer<typeof registerSchema>) => {
-    execute(values);
-    registerForm.reset();
+    startTransition(() => {
+      execute(values);
+      registerForm.reset();     
+    });
   };
 
   return (
@@ -87,14 +91,15 @@ export function RegisterForm(){
           Icon={MdPassword}
           error={registerForm.formState.errors.password} />
       </div>
-      <LoaderButton isLoading={status === "executing"}>Register</LoaderButton>
+      <LoaderButton isLoading={status === "executing" || isPending}>Register</LoaderButton>
     </form>
   );
 };
 
 export function LoginForm(){
   const router = useRouter();
-  const { execute, status } = useAction(loginUserAction, {
+  const [isPending, startTransition] = useTransition();
+  const { execute, status, result } = useAction(loginUserAction, {
     onSuccess() {
       router.push("/");
     },
@@ -111,8 +116,10 @@ export function LoginForm(){
   });
   
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-    execute(values);
-    loginForm.reset();
+    startTransition(() => {
+      execute(values);
+      loginForm.reset();
+    });
   };
   
   return (
@@ -134,7 +141,7 @@ export function LoginForm(){
           Icon={MdPassword}
           error={loginForm.formState.errors.password} />
       </div>
-      <LoaderButton isLoading={status === "executing"}>Login</LoaderButton>
+      <LoaderButton isLoading={status === "executing" || isPending}>Login</LoaderButton>
     </form>
   );
 };
