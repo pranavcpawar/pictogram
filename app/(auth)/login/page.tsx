@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export default function LoginPage(){
   return (
-    <main className="flex min-w-[45vw] flex-col items-start p-4">
+    <main className="flex flex-col max-w-fit items-start p-4">
       <title>Login • Frienso</title>
-      <div className=" max-w-[420px] flex flex-col items-center rounded-md w-full h-full gap-2 p-8">
+      <div className="max-w-[420px] flex flex-col items-center border border-[#303030] rounded-[16px] w-full h-full gap-2 p-4">
         <div className="mt-[36px]">
           <Image src="/frienso.svg" alt="frienso logo" className="h-auto w-[240px]" width={120} height={0} priority />
         </div>
