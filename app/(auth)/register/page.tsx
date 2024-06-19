@@ -9,7 +9,7 @@ export default function RegisterPage(){
       <title>Register • Frienso</title>
       <div className=" max-w-[420px] flex flex-col items-center rounded-md w-full h-full gap-2 p-8">
         <div className="mt-[36px]">
-          <Image src="/frienso.svg" alt="frienso logo" className="h-auto w-full" width={240} height={0} priority />
+          <Image src="/frienso.svg" alt="frienso logo" className="h-auto w-[240px]" width={120} height={0} priority />
         </div>
         <div className="text-[#eaeaea] flex flex-col w-full h-full gap-6 mb-[12px] mt-[32px]">
           <RegisterForm />
