@@ -68,6 +68,18 @@ export default function Sidebar() {
       </div>
 
       {/* mobile */}
+      <div className="sm:hidden flex items-center gap-2 w-full h-[60px] bg-black border-b z-10 border-[#303030] fixed top-0 p-2">
+        <div className="w-full h-[40px] flex items-center justify-between">
+          <div className="ml-2 w-[80px] h-[40px] flex place-content-center">
+            <Image src="/frienso.svg" alt="frienso" className="w-full h-full" width={80} height={40} priority />
+          </div>
+          <div className="flex max-h-[36px] gap-2 px-2 items-center justify-center bg-[#262626] text-sm placeholder:text-[#9b9b9b] outline-none rounded-[8px] p-1">
+            <ReactIcon key="search" Icon={FiSearch} />
+            <input placeholder="Search" className="bg-inherit outline-none w-[224px]" />
+          </div>
+        </div>
+        <ReactIcon key="ham" Icon={TbMenu} />
+      </div>
       <div className="sm:hidden h-[48px] z-10 bg-black flex items-center bottom-0 fixed justify-evenly w-full border-t border-r border-l border-[#303030]">
         {mobileMenu.map((item, index) => (
           <ReactIcon Icon={item.img} key={index} />
