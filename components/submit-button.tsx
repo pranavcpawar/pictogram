@@ -17,7 +17,7 @@ export default function SubmitButton({
     <button 
       disabled={isLoading} 
       onClick={onClick}
-      className="w-2/3 bg-[#CA2C92] hover:bg-[rgb(202,44,146,0.9)] active:scale-95 text-black font-bold flex flex-col space-y-[3px] items-center justify-center p-2 rounded-[8px]">
+      className="w-full bg-[#CA2C92] hover:bg-[rgb(202,44,146,0.9)] active:scale-95 text-black font-bold flex flex-col space-y-[3px] items-center justify-center p-2 rounded-[8px]">
         {isLoading && <LuLoader2 className="animate-spin" />}
         {isLoading ? submitText : children} 
     </button>
