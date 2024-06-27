@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image"
 import Link from "next/link";
 import { RiHome2Line } from "react-icons/ri";
@@ -5,21 +6,25 @@ import { FiSearch, FiSend } from "react-icons/fi";
 import { TiHeart } from "react-icons/ti";
 import { TbSquareRoundedPlus2, TbAlpha, TbMenu } from "react-icons/tb";
 import { IconType } from "react-icons";
+import { usePathname } from "next/navigation";
+import { MenuModal } from "./modal";
+import { useState } from "react";
 
 const desktopMenu = [
-  { name: "Home", img: RiHome2Line },
-  { name: "Search", img: FiSearch },
-  { name: "Send", img: FiSend },
-  { name: "Heart", img: TiHeart },
-  { name: "Add", img: TbSquareRoundedPlus2 },
-  { name: "Profile", img: TbAlpha },
+  { name: "Home", img: RiHome2Line, link: "/" },
+  { name: "Search", img: FiSearch, link: undefined },
+  { name: "Send", img: FiSend, link: "/direct/inbox" },
+  { name: "Heart", img: TiHeart, link: undefined },
+  { name: "Add", img: TbSquareRoundedPlus2, link: undefined },
+  { name: "Profile", img: TbAlpha, link: "/pranavcpawar" },
 ];
 
 const mobileMenu = [
-  { name: "Home", img: RiHome2Line },
-  { name: "Send", img: FiSend },
-  { name: "Add", img: TbSquareRoundedPlus2 },
-  { name: "Profile", img: TbAlpha },
+  { name: "Home", img: RiHome2Line, link: "/" },
+  { name: "Send", img: FiSend, link: "/direct/inbox" },
+  { name: "Heart", img: TiHeart, link: undefined },
+  { name: "Add", img: TbSquareRoundedPlus2, link: undefined },
+  { name: "Profile", img: TbAlpha, link: "/pranavcpawar" },
 ];
 
 function Icon(
@@ -39,15 +44,33 @@ function Icon(
 function ReactIcon(
   {
     Icon,
+    className,
+    link,
+    active,
+    onClick,
   }: {
     Icon: IconType,
+    className?: string,
+    link?: string,
+    active?: boolean,
+    onClick?: (e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void,
   }) {
+  if (!link || active === undefined) return (
+    <button onClick={onClick} className={`${className} w-10 h-10 grid place-content-center cursor-pointer p-1 rounded-[12px]`}>
+      <Icon size={24} className="w-6 h-6" />
+    </button>
+  );
   return(
-    <Icon size={24} className="w-6 h-6 text-[#eaeaea]" />
+    <Link href={link} className={`${active ? "" : className} w-10 h-10 grid rounded-[12px] place-content-center cursor-pointer p-1`}>
+      <Icon size={24} className={`w-6 h-6 ${active ? "text-[#ca2c92]": "text-[#eaeaea]"}`} />
+    </Link>
   );
 };
 
 export default function Sidebar() {
+  const pathname = usePathname();
+  const isActive = (link: string) => pathname === link;
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
       {/* desktop */}
@@ -56,14 +79,14 @@ export default function Sidebar() {
           <Link href="/" className="cursor-pointer mt-6">
             <Icon img="/logo.svg" alt="logo" />
           </Link>
-          <div className="w-10 h-full gap-[20px] flex flex-col items-center justify-around p-1">
+          <div className="w-[120px] lg:w-10 h-full gap-[20px] flex flex-col items-center justify-around p-1">
             {desktopMenu.map((item, index) => (
-              <ReactIcon key={index} Icon={item.img} />
+              <ReactIcon Icon={item.img} key={index} active={item.link ? isActive(item.link): undefined} link={item.link} className="hover:bg-[#202021]" />
             ))}
           </div>
         </div>
         <div className="mt-40 mb-8 flex flex-col items-center">
-          <ReactIcon key="ham" Icon={TbMenu} />
+          <ReactIcon key="ham" className={`${showMenu ? "text-[#ca2c92]" : "text-[#eaeaea]" } `} onClick={() => setShowMenu(!showMenu)} Icon={TbMenu} />
         </div>
       </div>
 
@@ -78,13 +101,14 @@ export default function Sidebar() {
             <input placeholder="Search" className="bg-inherit outline-none w-[224px]" />
           </div>
         </div>
-        <ReactIcon key="ham" Icon={TbMenu} />
+        <ReactIcon key="ham" Icon={TbMenu} className={`${showMenu ? "text-[#ca2c92]" : "text-[#eaeaea]" } `} onClick={() => setShowMenu(!showMenu)} />
       </div>
       <div className="sm:hidden h-[48px] z-10 bg-black flex items-center bottom-0 fixed justify-evenly w-full border-t border-r border-l border-[#303030]">
         {mobileMenu.map((item, index) => (
-          <ReactIcon Icon={item.img} key={index} />
+          <ReactIcon Icon={item.img} key={index} active={item.link ? isActive(item.link): undefined} link={item.link} className="hover:bg-[#202021]" />
         ))}
       </div>
+      {showMenu && <MenuModal show={showMenu} />}
     </>
   );
 };
