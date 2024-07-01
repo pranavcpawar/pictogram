@@ -48,23 +48,46 @@ function ReactIcon(
     link,
     active,
     onClick,
+    large,
+    name,
   }: {
     Icon: IconType,
     className?: string,
     link?: string,
     active?: boolean,
+    large?: boolean,
+    name?: string,
     onClick?: (e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void,
   }) {
-  if (!link || active === undefined) return (
-    <button onClick={onClick} className={`${className} w-10 h-10 grid place-content-center cursor-pointer p-1 rounded-[12px]`}>
-      <Icon size={24} className="w-6 h-6" />
-    </button>
-  );
-  return(
-    <Link href={link} className={`${active ? "" : className} w-10 h-10 grid rounded-[12px] place-content-center cursor-pointer p-1`}>
-      <Icon size={24} className={`w-6 h-6 ${active ? "text-[#ca2c92]": "text-[#eaeaea]"}`} />
-    </Link>
-  );
+  if (large) {
+    if (!link  || active === undefined) return (
+      <button onClick={onClick} className={`${className} w-full h-12 flex items-center justify-start cursor-pointer p-[12px] my-1 rounded-md`}>
+        <div className="inline-flex items-center w-full h-full justify-start gap-[16px]">
+          <Icon size={24} className="w-6 h-6" />
+          <h4>{name}</h4>
+        </div>
+      </button>
+    );
+    return(
+      <Link href={link} className={`${active ? "text-[#ca2c92] font-bold hover:bg-[#161618]" : className} w-full h-12 flex rounded-md items-center justify-start cursor-pointer p-[12px] my-1`}>
+        <div className="w-full h-full inline-flex items-center justify-start gap-[16px]">
+          <Icon size={24} className={`w-6 h-6 ${active ? "text-[#ca2c92]": "text-[#eaeaea]"}`} />
+          <h4>{name}</h4>
+        </div>
+      </Link>
+    );
+  } else {
+    if (!link  || active === undefined) return (
+      <button onClick={onClick} className={`${className} w-12 h-12 flex items-center justify-center cursor-pointer p-[12px] rounded-[12px] my-1`}>
+        <Icon size={24} className="w-6 h-6" />
+      </button>
+    );
+    return(
+      <Link href={link} className={`${active ? "" : className} w-12 h-12 flex rounded-[12px] items-center justify-center cursor-pointer p-[12px] my-1`}>
+        <Icon size={24} className={`w-6 h-6 ${active ? "text-[#ca2c92]": "text-[#eaeaea]"}`} />
+      </Link>
+    );
+  };
 };
 
 export default function Sidebar() {
@@ -73,15 +96,19 @@ export default function Sidebar() {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <>
-      {/* desktop */}
-      <div className="sm:flex hidden z-10 bg-black flex-col items-center justify-between w-[72px] h-full fixed border-r border-[#303030] p-4">
-        <div className="flex flex-col flex-1 items-center justify-center gap-[64px]">
-          <Link href="/" className="cursor-pointer mt-6">
-            <Icon img="/logo.svg" alt="logo" />
+      {/* screen width > 768px */}
+      <div className="sm:flex hidden z-10 bg-black flex-col items-center justify-between w-[72px] h-full fixed border-r border-[#303030] p-2">
+        <div className="flex flex-col flex-1 items-center justify-center">
+        <Link href="/" className="w-full h-[92px] relative top-0 left-0">
+            <div className="pt-[25px] pb-[16px] px-[12px] mb-[20px] h-[72px] w-full">
+              <div className="w-full h-[48px] flex items-center justify-start">
+                <Image className="cursor-pointer" src="/logo.svg" alt="logo" width={88} height={24} />
+              </div>
+            </div>
           </Link>
-          <div className="w-[120px] lg:w-10 h-full gap-[20px] flex flex-col items-center justify-around p-1">
+          <div className="w-full h-full flex flex-col items-center justify-around">
             {desktopMenu.map((item, index) => (
-              <ReactIcon Icon={item.img} key={index} active={item.link ? isActive(item.link): undefined} link={item.link} className="hover:bg-[#202021]" />
+              <ReactIcon Icon={item.img} key={index} active={item.link ? isActive(item.link): undefined} link={item.link} className="hover:bg-[#161618]" />
             ))}
           </div>
         </div>
@@ -90,7 +117,28 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* mobile */}
+      {/* screen width > 968px */}
+      <div className="lg:flex hidden z-10 bg-black flex-col items-start justify-between w-[244px] h-full fixed border-r border-[#303030] p-2">
+        <div className="flex flex-col flex-1 items-start justify-center w-full">
+          <Link href="/" className="w-full h-[92px] relative top-0 left-0">
+            <div className="pt-[25px] pb-[16px] px-[12px] mb-[20px] h-[72px] w-full">
+              <div className="w-full h-[48px] flex items-center justify-start">
+                <Image className="cursor-pointer" src="/frienso.svg" alt="frienso" width={88} height={24} />
+              </div>
+            </div>
+          </Link>
+          <div className="w-full h-full flex flex-col items-start justify-around">
+            {desktopMenu.map((item, index) => (
+              <ReactIcon Icon={item.img} large key={index} name={item.name} active={item.link ? isActive(item.link): undefined} link={item.link} className="hover:bg-[#161618]" />
+            ))}
+          </div>
+        </div>
+        <div className="mt-40 mb-8 flex flex-col items-center w-full">
+          <ReactIcon key="ham" className={`${showMenu ? "text-[#ca2c92]" : "text-[#eaeaea]" } hover:bg-[#161618]`} name="Menu" large  onClick={() => setShowMenu(!showMenu)} Icon={TbMenu} />
+        </div>
+      </div>
+
+      {/* screen width <= 768px */}
       <div className="sm:hidden flex items-center gap-2 w-full h-[60px] bg-black border-b z-10 border-[#303030] fixed top-0 p-2">
         <div className="w-full h-[40px] flex items-center justify-between">
           <div className="ml-2 w-[80px] h-[40px] flex place-content-center">
