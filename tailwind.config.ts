@@ -16,6 +16,9 @@ const config: Config = {
       "sm": ["16px", "20px"],
     },
     extend: {
+      zIndex: {
+        "1": "1",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
