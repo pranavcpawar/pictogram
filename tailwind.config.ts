@@ -10,7 +10,10 @@ const config: Config = {
     screens: {
       'sm': '768px',
       'md': '972px',
-      'lg': '1268px',
+      'lg': '1264px',
+    },
+    fontSize: {
+      "sm": ["16px", "20px"],
     },
     extend: {
       backgroundImage: {
