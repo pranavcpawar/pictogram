@@ -12,8 +12,8 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata: Metadata = {
-	title: "pictogram",
-	description: "pictogram is a social media platform to make new friends",
+	title: "Pictogram",
+	description: "Pictogram is a social media platform to make new friends",
 };
 
 export default function AuthLayout({
@@ -28,7 +28,7 @@ export default function AuthLayout({
 			>
 				{children}
 				<div className="text-[#d9d9d9] text-xs p-1 z-0 fixed bottom-2">
-					<h3> © {new Date().getFullYear()} pictogram</h3>
+					<h3> © {new Date().getFullYear()} Pictogram</h3>
 				</div>
 				<Toaster richColors theme="dark" className="z-40" />
 			</body>

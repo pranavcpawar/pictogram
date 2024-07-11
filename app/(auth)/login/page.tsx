@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function LoginPage() {
 	return (
 		<main className="flex flex-col max-w-fit items-start p-4">
-			<title>Login • pictogram</title>
+			<title>Login • Pictogram</title>
 			<div className="max-w-[420px] flex flex-col items-center border border-[#303030] rounded-[16px] w-full h-full gap-2 p-4">
 				<div className="mt-[36px]">
 					<Image
