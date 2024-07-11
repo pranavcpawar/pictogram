@@ -1,1 +1,1 @@
-## Frienso App
+## Pictogram
