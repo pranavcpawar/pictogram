@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Comfortaa } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "sonner";
 
-const comfortaa = Comfortaa({
+const nunito = Nunito_Sans({
 	subsets: ["latin"],
 	weight: ["300", "400", "700"],
 	adjustFontFallback: true,
 	style: ["normal"],
-	variable: "--font-comfortaa",
+	variable: "--font-nunito",
 });
 
 export const metadata: Metadata = {
@@ -23,14 +23,12 @@ export default function AuthLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`dark z-0 flex flex-col items-center justify-between min-h-screen p-4 ${comfortaa.className}`}
-			>
+			<body className={`dark z-0 flex flex-col items-center justify-between min-h-screen ${nunito.className}`}>
 				{children}
-				<div className="text-[#d9d9d9] text-xs p-1 z-0 fixed bottom-2">
-					<h3> © {new Date().getFullYear()} Pictogram</h3>
+				<div className="text-[#d9d9d9] text-xs w-full text-center">
+					<h3 className="py-[6px] px-[8px] w-full"> © {new Date().getFullYear()} Pictogram</h3>
 				</div>
-				<Toaster richColors theme="dark" className="z-40" />
+				<Toaster richColors theme="dark" className="z-40 relative" />
 			</body>
 		</html>
 	);
