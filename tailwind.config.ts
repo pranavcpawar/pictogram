@@ -13,6 +13,7 @@ const config: Config = {
       'lg': '1264px',
     },
     fontSize: {
+      "xs": ["13px", "16px"],
       "sm": ["16px", "20px"],
     },
     extend: {
