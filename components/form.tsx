@@ -23,15 +23,15 @@ type FormValues = {
 
 function FormField({ type, name, error, Icon, register }: FormValues) {
   return (
-    <div className="w-full h-[96px] bg-[#050505] flex flex-col space-y-[3px] items-start justify-center p-4 rounded-[12px] border-2 border-[#202020] focus-within:border-[#404040]">
-      <span className="text-xs text-[#9b9b9b] h-6">{name}</span>
+    <div className="w-full bg-[#050505] flex flex-col space-y-[3px] items-start justify-center p-2 rounded-[10px] border-2 border-[#202020] focus-within:border-[#404040]">
       <div className="flex items-center justify-between w-full">
         <Icon className="text-[#9b9b9b] h-6 w-6" />
         <span className="border-r-2 border-[#404040] mr-2 w-2 h-7 shrink-0 block" />
         <input
           {...register(name)}
           type={type}
-          className="w-full h-10 text-2xl text-[#FFFFFF] bg-inherit outline-none placeholder:text-[#5d5d5d]"
+          placeholder={name}
+          className="w-full h-10 text-md text-[#FFFFFF] bg-inherit outline-none placeholder:text-[#5d5d5d]"
         />
       </div>
       {error?.message ? <span className="text-xs w-full h-4 text-red-500">{error.message}</span> : <span className="w-full shrink-0 h-4" />}
@@ -72,21 +72,21 @@ export function RegisterForm(){
         <FormField 
           register={registerForm.register} 
           key="email" 
-          name="email" 
+          name="Email" 
           type="text" 
           Icon={MdAlternateEmail}
           error={registerForm.formState.errors.email} />
         <FormField 
           register={registerForm.register} 
           key="username" 
-          name="username" 
+          name="Username" 
           type="text" 
           Icon={PiHashStraightBold}
           error={registerForm.formState.errors.username} />
         <FormField 
           register={registerForm.register} 
           key="password" 
-          name="password" 
+          name="Password" 
           type="password" 
           Icon={MdPassword}
           error={registerForm.formState.errors.password} />
@@ -128,7 +128,7 @@ export function LoginForm(){
         <FormField 
           register={loginForm.register} 
           key="email" 
-          name="email" 
+          name="Email" 
           type="text" 
           Icon={MdAlternateEmail}
           error={loginForm.formState.errors.email} />
@@ -136,7 +136,7 @@ export function LoginForm(){
         <FormField 
           register={loginForm.register} 
           key="password" 
-          name="password" 
+          name="Password" 
           type="password" 
           Icon={MdPassword}
           error={loginForm.formState.errors.password} />
