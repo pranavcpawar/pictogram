@@ -13,8 +13,12 @@ const config: Config = {
       'lg': '1264px',
     },
     fontSize: {
-      "xs": ["13px", "16px"],
+      "2xl": ["60px", "72px"],
+      "xl": ["30px", "36px"],
+      "lg": ["24px", "32px"],
+      "md": ["20px", "28px"],
       "sm": ["16px", "20px"],
+      "xs": ["13px", "16px"],
     },
     extend: {
       zIndex: {
