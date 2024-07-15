@@ -18,7 +18,7 @@ export default function RegisterPage() {
 			<title>Register • Pictogram</title>
 			<div className="max-w-[680px] min-w-[424px] flex flex-col justify-center w-full h-full p-[20px]">
 				<div className="md:hidden flex flex-col justify-center">
-          <Image src="/logo.svg" alt="pictogram logo" className="flex flex-col justify-center" width={48} height={0} priority />
+          <Image src="/logo.svg" alt="pictogram logo" className="flex flex-col justify-center" width={48} height={48} priority />
         </div>
 				<div className="md:my-[48px] my-[40px] tracking-tighter font-bold md:text-3xl text-2xl text-[#f5f5f5]">
 					<h1 className="inline align-middle">Pictogram</h1>
