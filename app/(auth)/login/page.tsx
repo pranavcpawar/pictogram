@@ -2,6 +2,7 @@ import { LoginForm } from "@/components/form";
 import Link from "next/link";
 import { Space_Grotesk } from "next/font/google";
 import { IntroAnimation } from "@/components/animations";
+import Image from "next/image";
 
 const space_grotesk = Space_Grotesk({
 	subsets: ["latin"],
@@ -16,11 +17,14 @@ export default function LoginPage() {
 		<main className={`relative w-full h-full flex flex-col justify-center z-0 bg-black ${space_grotesk.className}`}>
 			<title>Login • Pictogram</title>
 			<div className="max-w-[680px] min-w-[424px] flex flex-col justify-center w-full h-full p-[20px]">
-				<div className="my-[48px] tracking-tighter font-bold text-2xl text-[#f5f5f5]">
+				<div className="md:hidden flex flex-col justify-center">
+          <Image src="/logo.svg" alt="pictogram logo" className="flex flex-col justify-center" width={48} height={0} priority />
+        </div>
+				<div className="md:my-[48px] my-[40px] tracking-tighter font-bold md:text-3xl text-2xl text-[#f5f5f5]">
 					<h1 className="inline align-middle">Pictogram</h1>
 				</div>
-				<div className="mb-[32px] text-xl font-bold tracking-[-1.2px] text-[#f5f5f5]">
-					<h1 className="inline">
+				<div className="md:mb-[32px] mb-[20px] md:text-xl text-lg font-bold tracking-[-1.2px] text-[#f5f5f5]">
+					<h1 className="inline-block">
 						<IntroAnimation texts={["Welcome back!", "Something's brewing!", "Login to check your feed!"]} />
 					</h1>
 				</div>
