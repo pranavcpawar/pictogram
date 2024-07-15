@@ -13,7 +13,8 @@ const config: Config = {
       'lg': '1264px',
     },
     fontSize: {
-      "2xl": ["60px", "72px"],
+      "3xl": ["60px", "72px"],
+      "2xl": ["40px", "52px"],
       "xl": ["30px", "36px"],
       "lg": ["24px", "32px"],
       "md": ["20px", "28px"],
