@@ -11,6 +11,14 @@ export function AuthScreen({
 }) {
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   if (isLoading) return <Loader isLoading={isLoading} onComplete={() => setIsLoading(false)} />;
 
   return (
