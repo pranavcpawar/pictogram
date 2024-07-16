@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Nunito_Sans } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "sonner";
-import Image from "next/image";
 import { AuthScreen } from "@/components/screens";
 
-const nunito = Nunito_Sans({
+const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["300", "400", "700"],
 	adjustFontFallback: true,
 	style: ["normal"],
-	variable: "--font-nunito",
+	variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export default function AuthLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`dark relative z-0 ${nunito.className}`}>
+			<body className={`dark relative z-0 ${poppins.className}`}>
 				<AuthScreen>{children}</AuthScreen>
 				<Toaster richColors theme="dark" className="z-40 relative" />
 			</body>
