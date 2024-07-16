@@ -32,7 +32,7 @@ export default function LoginPage() {
 					<LoginForm />
 				</div>
 				<div className="flex flex-col gap-2 w-[380px] justify-center">
-					<h3 className="text-sm text-[#f5f5f5] font-medium">
+					<h3 className="text-sm text-[#f5f5f5] font-medium tracking-tight">
 						Don&apos;t have an account?{" "}
 					</h3>
 					<Link className="text-[#CA2C92] w-full text-center p-2 border-2 border-[#242426] rounded-[8px] active:scale-95" href="/register">

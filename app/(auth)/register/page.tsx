@@ -32,7 +32,7 @@ export default function RegisterPage() {
 					<RegisterForm />
 				</div>
 				<div className="flex flex-col gap-2 w-[380px] justify-center">
-					<h3 className="text-sm font-medium text-[#f5f5f5]">
+					<h3 className="text-sm font-medium text-[#f5f5f5] tracking-tight">
 						Already have an account?{" "}
 					</h3>
 					<Link className="text-[#CA2C92] w-full text-center p-2 border-2 border-[#242426] rounded-[8px] active:scale-95" href="/login">
