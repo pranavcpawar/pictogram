@@ -23,7 +23,7 @@ type FormValues = {
 
 function FormField({ type, name, error, Icon, register }: FormValues) {
   return (
-    <div className="w-full bg-[#050505] flex flex-col space-y-[3px] items-start justify-center p-2 rounded-[10px] border-2 border-[#202020] focus-within:border-[#404040]">
+    <div className="w-full bg-[#050505] flex flex-col space-y-[6px] items-start justify-center p-2 rounded-[10px] border-2 border-[#202020] focus-within:border-[#404040] tracking-tight">
       <div className="flex items-center justify-between w-full">
         <Icon className="text-[#9b9b9b] h-6 w-6" />
         <span className="border-r-2 border-[#404040] mr-2 w-2 h-7 shrink-0 block" />
@@ -31,7 +31,7 @@ function FormField({ type, name, error, Icon, register }: FormValues) {
           {...register(name)}
           type={type}
           placeholder={name}
-          className="w-full h-10 text-md text-[#FFFFFF] bg-inherit outline-none placeholder:text-[#5d5d5d]"
+          className="w-full h-6 text-sm text-[#FFFFFF] bg-inherit outline-none placeholder:text-[#5d5d5d]"
         />
       </div>
       {error?.message ? <span className="text-xs w-full h-4 text-red-500">{error.message}</span> : <span className="w-full shrink-0 h-4" />}
