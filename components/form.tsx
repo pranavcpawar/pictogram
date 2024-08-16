@@ -60,6 +60,7 @@ export function RegisterForm(){
   });
 
   const onSubmit = async (values: z.infer<typeof registerSchema>) => {
+    console.log(values);
     startTransition(() => {
       execute(values);
       registerForm.reset();     
@@ -72,21 +73,21 @@ export function RegisterForm(){
         <FormField 
           register={registerForm.register} 
           key="email" 
-          name="Email" 
+          name="email" 
           type="text" 
           Icon={MdAlternateEmail}
           error={registerForm.formState.errors.email} />
         <FormField 
           register={registerForm.register} 
           key="username" 
-          name="Username" 
+          name="username" 
           type="text" 
           Icon={PiHashStraightBold}
           error={registerForm.formState.errors.username} />
         <FormField 
           register={registerForm.register} 
           key="password" 
-          name="Password" 
+          name="password" 
           type="password" 
           Icon={MdPassword}
           error={registerForm.formState.errors.password} />
@@ -128,7 +129,7 @@ export function LoginForm(){
         <FormField 
           register={loginForm.register} 
           key="email" 
-          name="Email" 
+          name="email" 
           type="text" 
           Icon={MdAlternateEmail}
           error={loginForm.formState.errors.email} />
@@ -136,7 +137,7 @@ export function LoginForm(){
         <FormField 
           register={loginForm.register} 
           key="password" 
-          name="Password" 
+          name="password" 
           type="password" 
           Icon={MdPassword}
           error={loginForm.formState.errors.password} />

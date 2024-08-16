@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { animate , motion, useAnimationControls} from "framer-motion";
+import { animate , motion, useAnimationControls } from "framer-motion";
 
 export function AuthScreen({
   children,
@@ -17,7 +17,7 @@ export function AuthScreen({
     }, 5000);
 
     return () => clearTimeout(timeout);
-  }, []);
+  }, [isLoading]);
 
   if (isLoading) return <Loader isLoading={isLoading} onComplete={() => setIsLoading(false)} />;
 
@@ -48,7 +48,7 @@ const variants = {
   visible: {
     width: "100%",
     transition: {
-      duration: 1,
+      duration: 0.8,
       type: "tween",
     },
   },
